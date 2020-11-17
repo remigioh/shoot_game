@@ -17,6 +17,7 @@ class Player extends Character {
             myImageDead = PLAYER_PICTURE_DEAD;
 
         super(game, width, height, x, y, speed, myImage, myImageDead);
+        this.lives = PLAYER_LIVES;
     }
 
     /**
@@ -42,9 +43,17 @@ class Player extends Character {
         }
     }
 
+remainlives(){
+        if(this.lives>1){
+            this.lives-=1;
+            return true;
+        }else{
+            return false;
+        }
+    }    
     /**
      * Mata al jugador
-     */
+     
     collide() {
         if (!this.dead) {
             setTimeout(() => {
@@ -53,4 +62,24 @@ class Player extends Character {
             super.collide();
         }
     }
+    **/
+    collide() {
+        if(!this.dead){
+            super.collide();
+            if(this.remainlives()){
+                setTimeout(() => {
+                    this.image.src = this.myImage;    
+                    this.dead = false;
+                }, 2000);
+                
+            }else{
+               super.collide();
+               this.lives = 0;
+               this.game.endGame();
+            }
+        }
+    }
+    
+    
+    
 }

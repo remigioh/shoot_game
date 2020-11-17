@@ -17,6 +17,9 @@ class Game {
         this.opponentShots = []; // Disparos del oponente
         this.xDown = null; //  Posición en la que el usuario ha tocado la pantalla
         this.paused = false; // Indica si el juego está pausado
+        this.score = 0; // atributo que refleja la puntuación
+        this.boss = undefined;
+        this.disparo = undefined;
     }
 
     /**
@@ -85,13 +88,17 @@ class Game {
     /**
      * Elimina al oponente del juego
      */
+    
     removeOpponent () {
         if (this.opponent) {
             document.body.removeChild(this.opponent.image);
         }
-        this.opponent = new Opponent(this);
+        if(this.ended===false){
+            this.opponent = new Boss(this);
+        }
+        
     }
-
+       
     /**
      * Comprueba la tecla que está pulsando el usuario
      * @param event {Event} Evento de tecla levantada/pulsada
@@ -204,11 +211,27 @@ class Game {
 
     /**
      * Termina el juego
-     */
+     
     endGame () {
         this.ended = true;
         let gameOver = new Entity(this, this.width / 2, "auto", this.width / 4, this.height / 4, 0, GAME_OVER_PICTURE)
         gameOver.render();
+    }
+    */
+    endGame () {
+        this.ended = true;
+        let gameOver;
+
+        if(this.player.lives!==0){
+            gameOver = new Entity(this, this.width / 2, "auto", this.width / 4, this.height / 4, 0, GAME_WINNER)
+        }else{
+         
+            let gameOver = new Entity(this, this.width / 2, "auto", this.width / 4, this.height / 4, 0, GAME_OVER_PICTURE)
+        }
+        if(gameOver!==undefined){
+            gameOver.render();
+        }
+        
     }
 
     /**
@@ -222,6 +245,9 @@ class Game {
      * Actualiza los elementos del juego
      */
     update () {
+        livesli.innerHTML="Lives: "+this.player.lives;
+        scoreli.innerHTML="Score: "+this.score;
+        
         if (!this.ended) {
             this.player.update();
             if (this.opponent === undefined) {

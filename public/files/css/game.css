@@ -2,6 +2,10 @@ html {
   overflow: hidden;
 }
 
+body {
+    background-color: rgba(19, 168, 195, 0.87);
+}
+
 .Opponent {
 	animation: rotation 3s infinite linear;
 	-webkit-animation: rotation 3s infinite linear;
@@ -31,4 +35,25 @@ html {
 	outline: none;
 	font-family: monospace;
 	cursor: pointer;
+}
+
+ul{
+	position: absolute;
+	left: auto;
+	top: 5px;
+	right: 0px;
+	list-style-type: none;
+	margin: 2px;
+	padding: 0px;
+	display: flex;
+	flex-direction: row;
+	animation: colors 3s infinite ease-in-out;
+	gap: 5px;
+}
+
+ul li {
+	border: 2px #83A638;
+	padding: 10px;
+	margin: 5px;
+	background-color:  #F3EAC9;
 }

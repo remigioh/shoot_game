@@ -61,6 +61,21 @@ class Opponent extends Character {
 
     /**
      * Mata al oponente
+     
+     collide() {
+        
+        if (!this.dead) {
+            setTimeout(() => {
+                this.game.removeOpponent();
+            }, 2000);
+            this.game.score+=1;
+            document.getElementById("scoreli").innerHTML ="Score: "+this.game.score;
+            super.collide();
+      }
+
+    }
+     
+     
      */
     collide() {
         
@@ -68,6 +83,9 @@ class Opponent extends Character {
             setTimeout(() => {
                 this.game.removeOpponent();
             }, 2000);
+            
+            this.game.score+=1;
+            scoreli.innerHTML ="Score: "+this.game.score;
             super.collide();
         }
 

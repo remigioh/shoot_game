@@ -31,6 +31,10 @@ class Entity {
         document.body.appendChild(this.image);
     }
 
+    remove() {
+      document.body.removeChild(this.image);
+    }
+
     /**
      * Actualiza la posición del elemento en la pantalla
      */
