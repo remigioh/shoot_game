@@ -74,3 +74,4 @@ Dado que es un curso para principiantes, ante la duda les pedimos que sean benev
 * **25%:** Tiene un manifest que describe la PWA
 * **50%:** Registra un Service Worker y utiliza las caches
 * **25%:** Muestra el botón instalar la PWA que permite su instalación como aplicación en el dispositivo
+# shoot_game
